@@ -32,3 +32,52 @@ double sigmoid(double z) //sigmoid function
 	return y_predict; //return value calculated for sigma
 }
 
+int main()
+{
+	vector<double> w = { 0.095902, -.20531, -.000185721 }; //w vector from question 8
+
+	//given information about aircraft
+	vector<double> x_SF50Vision = { 87.0, 38.67, 6.00 };
+	vector<double> x_208Caravan = { 79.0, 52.08,8.0 };
+	vector<double> x_AeroL29Delfin = { 92.0, 33.75, 7.804 };
+	vector<double> x_AT802U = { 91.0, 59.25,16.00 };
+
+	//dot product with w vector to get z for sigmoid equation
+	double z_SF50Vision = dot_product(w, x_SF50Vision);
+	double z_208Caravan = dot_product(w, x_208Caravan);
+	double z_AeroL29Delfin = dot_product(w, x_AeroL29Delfin);
+	double z_AT802U = dot_product(w, x_AT802U);
+
+	//call calculated zs into sigmoid equation to get predicted y for each aircraft
+	double y_predicted_SF50Vision = sigmoid(z_SF50Vision);
+	double y_predicted_208Caravan = sigmoid(z_208Caravan);
+	double y_predicted_AeroL29Delfin = sigmoid(z_AeroL29Delfin);
+	double y_predicted_AT802U = sigmoid(z_AT802U);
+
+	//if else statements for each aircraft
+
+	if (y_predicted_SF50Vision > 0.5)
+		cout << "SF50 Vision uses a jet engine." << endl; //true
+	else
+		cout << "SF50 Vision uses a turboprop engine." << endl;
+
+
+	if (y_predicted_208Caravan > 0.5)
+		cout << "208 Caravan uses a jet engine." << endl;
+	else
+		cout << "208 Caravan uses a turboprop engine." << endl; //true
+
+
+	if (y_predicted_AeroL29Delfin > 0.5)
+		cout << "Aero L-29 Delfin uses a jet engine." << endl; //true
+	else
+		cout << "Aero L-29 Delfin uses a turboprop engine." << endl;
+
+
+	if (y_predicted_AT802U > 0.5)
+		cout << "AT-802U uses a jet engine." << endl;
+	else
+		cout << "AT-802U uses a turboprop engine." << endl; //true
+
+	return 0;
+}
